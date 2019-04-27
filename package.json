@@ -1,0 +1,38 @@
+{
+  "name": "nodejs-rest-api",
+  "version": "1.0.0",
+  "description": "A sample Rest API Using NodeJS, Restify, Mongoose, and MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwapnilGoad/nodejs-rest-api.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Rest",
+    "API",
+    "JWT",
+    "JWT",
+    "Authentication",
+    "MongoDB",
+    "Mongoose",
+    "Restify"
+  ],
+  "author": "Swapnil Goad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SwapnilGoad/nodejs-rest-api/issues"
+  },
+  "homepage": "https://github.com/SwapnilGoad/nodejs-rest-api#readme",
+  "dependencies": {
+    "mongoose": "^5.5.4",
+    "mongoose-timestamp": "^0.6.0",
+    "restify": "^8.3.1",
+    "restify-errors": "^7.0.0"
+  }
+}
