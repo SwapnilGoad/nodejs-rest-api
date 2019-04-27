@@ -1,11 +1,14 @@
 const restify = require("restify");
-const config = require("./common/configuration/settings");
+const config = require("./common/config");
 const mongoose = require("mongoose");
+const rjwt = require('restify-jwt-community');
 
 const app = restify.createServer();
 
 //Middleware
 app.use(restify.plugins.bodyParser());
+//Protect all routes except auth and register
+app.use(rjwt({secret: config.JWT_SECRET}).unless({path: ["/auth","/register"]}));
 
 app.listen(config.PORT, () => {
   //Ensure that we are able to connect to the DB before starting the server.
@@ -23,5 +26,6 @@ db.on("error", err => console.log(err));
 
 db.once("open", () => {
   require("./routes/customer.routes")(app);
+  require("./routes/user.routes")(app);
   console.log(`Server started on port ${config.PORT}`);
 });
