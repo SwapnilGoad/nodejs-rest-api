@@ -1,14 +1,22 @@
 const restify = require("restify");
 const config = require("./common/config");
 const mongoose = require("mongoose");
-const rjwt = require('restify-jwt-community');
+const rjwt = require("restify-jwt-community");
 
 const app = restify.createServer();
 
 //Middleware
 app.use(restify.plugins.bodyParser());
 //Protect all routes except auth and register
-app.use(rjwt({secret: config.JWT_SECRET}).unless({path: ["/auth","/register"]}));
+app.use(
+  rjwt({ secret: config.JWT_SECRET }).unless({ path: ["/","/auth", "/register"] })
+);
+
+app.get("/", async (req, res, next) => {
+  res.send(
+    "Welcome To Customer API -Use instructions in README.md to use the API"
+  );
+});
 
 app.listen(config.PORT, () => {
   //Ensure that we are able to connect to the DB before starting the server.
