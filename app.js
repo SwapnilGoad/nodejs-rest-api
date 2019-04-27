@@ -9,13 +9,16 @@ const app = restify.createServer();
 app.use(restify.plugins.bodyParser());
 //Protect all routes except auth and register
 app.use(
-  rjwt({ secret: config.JWT_SECRET }).unless({ path: ["/","/auth", "/register"] })
+  rjwt({ secret: config.JWT_SECRET }).unless({
+    path: ["/", "/auth", "/register"]
+  })
 );
 
 app.get("/", async (req, res, next) => {
   res.send(
     "Welcome To Customer API -Use instructions in README.md to use the API"
   );
+  next();
 });
 
 app.listen(config.PORT, () => {
